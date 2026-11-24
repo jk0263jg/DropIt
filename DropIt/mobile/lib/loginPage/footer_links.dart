@@ -1,0 +1,85 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:microstone_clothing_bin/join/consent_join.dart';
+import 'package:microstone_clothing_bin/join/find/find.Id1.dart';
+import 'package:microstone_clothing_bin/join/find/FindPwPage1.dart';
+import 'package:microstone_clothing_bin/join/find/Find_Er.dart';
+
+class FooterLinks extends StatelessWidget {
+  const FooterLinks({Key? key}) : super(key: key);
+
+  /// Handles sign up link tap - navigates to registration screen
+
+  /// Handles find ID link tap - navigates to ID recovery screen
+
+  @override
+  Widget build(BuildContext context) {
+    /// Handles find password link tap - navigates to password recovery screen
+
+    void _handleFindPassword() {
+      // TODO: Navigate to password recovery screen
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => FindPwPage1()),
+      );
+    }
+
+    void _handlejoin() {
+      //회원가입
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => JoinForm()),
+      );
+    }
+
+    void _handleFindId() {
+      // 아이디 찾기
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => FindIdPage1()),
+      );
+    }
+
+    return Container(
+      width: 300, // Fixed width matching other form elements
+      child: Row(
+        mainAxisAlignment:
+            MainAxisAlignment.spaceBetween, // Distribute links evenly
+        children: [
+          GestureDetector(
+            onTap: _handlejoin,
+            child: Text(
+              '회원가입', // Korean for "Find ID"
+              style: TextStyle(
+                fontSize: 12, // Consistent text size
+                color: Color(0xFF18181B), // Same dark gray color
+              ),
+            ),
+          ),
+          // Find ID link
+          GestureDetector(
+            onTap: _handleFindId,
+            child: Text(
+              '아이디 찾기', // Korean for "Find ID"
+              style: TextStyle(
+                fontSize: 12, // Consistent text size
+                color: Color(0xFF18181B), // Same dark gray color
+              ),
+            ),
+          ),
+          // Find password link
+          GestureDetector(
+            onTap: _handleFindPassword,
+            child: Text(
+              '비밀번호 찾기', // Korean for "Find Password"
+              style: TextStyle(
+                fontSize: 12, // Consistent text size
+                color: Color(0xFF18181B), // Same dark gray color
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

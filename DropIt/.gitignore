@@ -1,0 +1,20 @@
+# secrets / local config
+.env
+.env.*
+!.env.example
+application-local.properties
+*.pem
+*.key
+
+# build outputs
+build/
+.gradle/
+node_modules/
+dist/
+.dart_tool/
+.flutter-plugins*
+*.iml
+.idea/
+.vscode/
+.DS_Store
+mobile/dart-define.json

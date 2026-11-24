@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>로그인</title>
+</head>
+<body>
+<h2>로그인</h2>
+<form id="login-form">
+  <input type="text" name="username" placeholder="아이디" required><br>
+  <input type="password" name="password" placeholder="비밀번호" required><br>
+  <button type="submit">로그인</button>
+</form>
+
+<script>
+  const form = document.getElementById('login-form');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const data = {
+      username: form.username.value,
+      password: form.password.value
+    };
+
+    fetch('http://localhost:8081/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+            .then(res => {
+              if (!res.ok) throw new Error('로그인 실패');
+              return res.text();
+            })
+            .then(token => {
+              alert("로그인 성공! 토큰: " + token);
+              localStorage.setItem('token', token); // 토큰 저장 (필요 시 이후 인증에 사용)
+            })
+            .catch(err => alert(err.message));
+  });
+</script>
+</body>
+</html>

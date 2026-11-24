@@ -1,0 +1,53 @@
+package com.example.clothing_backend.marker;
+
+import com.example.clothing_backend.global.ImageUploadService;
+import com.example.clothing_backend.user.User;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
+public class MarkerPostService {
+
+    private final MarkerPostRepository markerPostRepository;
+    private final ClothingBinRepository clothingBinRepository;
+    private final ImageUploadService imageUploadService;
+
+    // 특정 의류수거함의 모든 게시글을 DTO로 변환하여 조회
+    public List<MarkerPostDto> getPostsByBinId(Long binId) {
+        return markerPostRepository.findAllByClothingBin_IdOrderByCreatedAtDesc(binId)
+                .stream()
+                .map(MarkerPostDto::new) // DTO가 URL을 처리하도록 수정됨
+                .collect(Collectors.toList());
+    }
+
+    // 새 게시글 생성
+    @Transactional
+    public void createPost(Long binId, User user, String content, MultipartFile imageFile) throws IOException {
+        ClothingBin clothingBin = clothingBinRepository.findById(binId)
+                .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 의류수거함 ID입니다: " + binId));
+
+        String imageUrl = imageUploadService.uploadImage(imageFile);
+
+        MarkerPost post = new MarkerPost();
+        post.setContent(content);
+        post.setClothingBin(clothingBin);
+        post.setUser(user);
+        post.setImageUrl(imageUrl);
+        post.setProfileImageUrl(user.getProfileImageUrl());
+
+        markerPostRepository.save(post);
+    }
+
+    // 로그인 한 유저가 리뷰를 삭제
+    @Transactional
+    public void deleteByUserId(Long userId) {
+        markerPostRepository.deleteByUserId(userId);
+    }
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>아이디 찾기</title>
+</head>
+<body>
+<h1>아이디 찾기</h1>
+<form action="/findId" method="post">
+    닉네임: <input type="text" name="nickname"><br>
+    이메일: <input type="text" name="email"><br>
+    <input type="submit" value="아이디 찾기">
+</form>
+
+<!-- 결과 팝업 -->
+<div th:if="${foundId != null}">
+    <script>alert("찾은 아이디: [[${foundId}]]");</script>
+</div>
+<div th:if="${findError != null}">
+    <script>alert("[[${findError}]]");</script>
+</div>
+
+</body>
+</html>

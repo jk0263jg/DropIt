@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>마이페이지</title>
+    <style>
+        .profile-container { text-align: center; margin: 20px; }
+        .profile-img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; }
+        .form-section { margin: 20px auto; width: 400px; }
+        .form-section input { width: 100%; padding: 10px; margin: 5px 0; }
+        .btn { padding: 10px 15px; border: none; cursor: pointer; margin-top: 10px; }
+        .btn-primary { background: #6c5ce7; color: white; }
+        .btn-danger { background: #d63031; color: white; }
+        h2, h3 { text-align: center; }
+    </style>
+</head>
+<body>
+
+<div class="profile-container">
+    <!-- 프로필 이미지 & 업로드 -->
+    <form action="/mypage/uploadProfile" method="post" enctype="multipart/form-data">
+        <img th:if="${loginUser.profileImage != null}" th:src="${loginUser.profileImage}"
+             class="profile-img" alt="프로필 이미지">
+        <img th:if="${loginUser.profileImage == null}" th:src="@{/images/default_profile.png}"
+             class="profile-img" alt="기본 프로필 이미지">
+        <input type="file" name="profileImage">
+        <button type="submit" class="btn btn-primary">프로필 사진 변경</button>
+    </form>
+    <h2 th:text="${loginUser.nickname}">사용자 닉네임</h2>
+</div>
+
+<!-- 회원 정보 -->
+<div class="form-section">
+    <h3>회원정보</h3>
+    아이디: <input type="text" th:value="${loginUser.id}" readonly><br>
+    이메일: <input type="text" th:value="${loginUser.email}" readonly><br>
+    닉네임: <input type="text" th:value="${loginUser.nickname}" readonly><br>
+</div>
+
+<!-- 비밀번호 재설정 -->
+<div class="form-section">
+    <h3>비밀번호 재설정</h3>
+    <form action="/mypage/resetPassword" method="post">
+        새 비밀번호: <input type="password" name="newPassword" placeholder="새 비밀번호"><br>
+        비밀번호 확인: <input type="password" name="newPasswordCheck" placeholder="비밀번호 확인"><br>
+        <button type="submit" class="btn btn-primary">비밀번호 변경</button>
+    </form>
+</div>
+
+<!-- 계정 보안 -->
+<div class="form-section">
+    <h3>계정 보안</h3>
+    <form action="/logout" method="get">
+        <button type="submit" class="btn">로그아웃</button>
+    </form>
+    <!-- 회원 탈퇴 URL 컨트롤러에 맞춤 -->
+    <form action="/mypage/deleteAccount" method="post">
+        <button type="submit" class="btn btn-danger">회원 탈퇴</button>
+    </form>
+</div>
+
+<!-- 에러 메시지 -->
+<div th:if="${error != null}" style="color:red; text-align:center; margin-top:10px;">
+    <p th:text="${error}"></p>
+</div>
+
+</body>
+</html>

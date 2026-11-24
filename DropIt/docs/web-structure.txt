@@ -1,0 +1,198 @@
+프로젝트 루트/
+├── src/
+│   ├── components/ Vue 컴포넌트
+│   │   ├── common/ 공통 UI 컴포넌트
+│   │   │   ├── NavigationBar.vue        ← 상단 네비게이션 바 컴포넌트
+│   │   │   └── SidebarContent.vue       ← 사이드바 콘텐츠 컴포넌트
+│   │   ├── share/ ← 나눔 페이지 UI 컴포넌트
+│   │   │   ├── ShareContent.vue ← 나눔페이지 뷰
+│   │   │   ├── SharePost ← 작성된 나눔 글 페이지 뷰
+│   │   │   └── ShareWriting.vue ← 글쓰기 페이지 컴포넌트 뷰
+│   │   ├── map/ 지도 관련 컴포넌트
+│   │   │   ├── NaverMap.vue             ← 네이버 지도 컴포넌트
+│   │   │   └── SmallMap.vue             ← 글쓰기 페이지 지도 컴포넌트
+│   │   └── ui/    기본 UI 요소들   
+│   │          │  ├── mapzoom/     지도 맵 축소 확대 버튼 vue   (신규 추가)
+│   │          │  │        ├─ MapZoomInButton.vue ← 지도 확대 버튼 vue  (신규 추가)
+│   │          │  │        └─ MapZoomOutButton.vue ← 지도 축소 버튼 vue  (신규 추가)
+│   │          │  ├── detailpanel/    정보패널 ui vue (신규 추가)
+│   │          │  │          └─ DetailPanelCloseButton.vue ← 정보패널 종료 버튼 vue (신규 추가)
+│   │          │  ├ search/ 검색 (신규 추가)
+│   │          │  │      └─ SearchContainer.vue ← 검색 뷰 (신규 추가)
+│   │          │  ├ favorites/ 즐겨찾기 뷰 (신규 추가)
+│   │          │  │        └─ FavoriteButton.vue ← 북마크 이미지 컴포넌트 (신규 추가)
+│   │          ├ ClothingBinDetailPanel ← 정보 패널 vue
+│   │          ├ SidebarToggleButton.vue ← 사이드바 정보패널 토글버튼 vue
+│   │          ├ CurrentLocationButton.vue  ← 현재 위치 버튼 vue   (신규 추가)
+│   │          ├ LocationPermissionModal.vue ← 현재 위치 버튼 권한 허용 안될때 나오는 vue (신규 추가)
+│   │          └ SearchAgainButton.vue ← "이 위치에서 다시 검색" 보라색 버튼 컴포넌트 (신규 추가)
+│   ├── layouts/ 페이지 레이아웃 컴포넌트 (전체 구조 담당)
+│   │   ├── MainLayout.vue               ← 상단 네비바 레이아웃
+│   │   └── SidebarLayout.vue            ← 사이드바 레이아웃
+│   ├── views/ 페이지 컴포넌트 (라우터와 직접 연결되는 페이지들)
+│   │   ├── HomeView.vue                 ← 메인 홈페이지 (사이드바 + 지도)
+│   │   ├── ShareView.vue                ← 나눔 페이지
+│   │   ├── FavoritesView.vue            ← 즐겨찾기 페이지 
+│   │   ├── GuideView.vue                ← 이용가이드 페이지 
+│   │   ├── LoginView.vue                ← 로그인 페이지
+│   │   ├── MyPageView.vue                ← 마이페이지 페이지
+│   │   ├── SignupView.vue               ← 회원가입 페이지 (신규 추가)
+│   │   ├── FindIdView.vue                ← 아이디 찾기 페이지 (신규 추가)
+│   │   ├── FindPasswordView.vue      ← 비밀번호 찾기 페이지 (신규 추가)
+│   │   ├── FindIdNotFoundView.vue     ← 아이디 찾기 실패 페이지 (신규 추가)
+│   │   ├── FindPasswordNotFoundView.vue      ← 비밀번호 찾기 실패 페이지 (신규 추가)
+│   │   ├── FindIdSuccessView.vue ← 아이디 찾기 성공 페이지 (신규추가)
+│   │   ├── ResetPasswordView.vue ← 비밀번호 재설정 페이지 (신규추가)
+│   │   ├── SignupPrivacyView.vue ← 개인정보 수집 및 이용 동의서 페이지 (신규추가)
+│   │   ├── SignupTermsView ← 회원가입 이용약관 페이지 (신규추가)
+│   │   ├── SignupLocationView.vue ← 위치정보 서비스 이용약관 페이지 (신규추가)
+│   │   ├── PostView.vue ← 작성된 나눔 글 페이지
+│   │   └── WritingView ← 글쓰기 페이지 
+│   ├── router/  Vue Router 라우팅 설정 및 경로 정의
+│   │   └── index.js                     ← 라우터 설정
+│   ├── stores/    상태관리용
+│   │   ├── clotheBinStore.js            ← 의류수거함 상태 관리 
+│   │   └── favoritesStore.js             ← 즐겨찾기 localStorage 관리 (신규 추가)
+│   │   └── authStore.js ← 로그인 로그아웃 회원가입 상태 관리용 (신규 추가)
+│   ├── services/                        API 호출, 외부 서비스 연동 로직
+│   │   ├── naverMapService.js           ← 네이버 지도 API 서비스 네이버지도 연결
+│   │   ├── apiService.js           ←  기본 HTTP 요청 기능 백엔드랑 연결 기본 axios 설정
+│   │   ├── clothesBinService.js         ← 의류수거함 API 호출 서비스        
+│   │   └── geocodingService.js   ← 네이버 지도 Geocoding API  (신규 추가)
+│   │   └── authService.js ← 회원가입 로그인 마이페이지 api 연결 (신규 추가)
+│   ├── composables/                       Vue 3 Composition API 재사용 로직
+│   │   │	      └── currentlocation/                  ← 현재 위치 관련 모든 기능  (신규 추가)
+│   │   │	      │    │   └── coordinates/ ← 좌표 권한 관리 (신규 추가)
+│   │   │	      │    │              └── gpsCoordinates.js ← GPS 좌표 관리 80% 함수 (신규 추가)
+│   │   │	      │    │              └── locationPermission.js ← 권한 관련 20% 함수 (신규 추가)
+│   │   │	      │    ├── useGeolocation.js            ← 통합 래퍼 gpsCoordinates.js locationPermission.js (신규 추가) 
+│   │   │	      │    ├── useCoordinates.js            ← 최종 래퍼 useGeolocation.js 함수 기능 주석 추가 (신규 추가) 
+│   │   │	      │    ├── useCurrentLocationMarker.js   ← 현재 위치 마커         (신규 추가)
+│   │   │	      │    ├── useCurrentLocationMove.js ← 현재 위치로 지도 이동   (신규 추가)
+│   │   │	      │    ├── useCurrentLocation.js          ← 현재 위치 관련 모든 기능을 통합  마커랑 지도 이동 통합  (신규 추가)
+│   │   │	      │    ├── useNaverMapCurrentLocation.js ← 네이버 지도의 현재 위치 관련 모든 로직을 관리 (신규 추가)
+│   │   │	      │    └── useDistanceCalculator.js  ← 거리 계산 전용 (신규 추가)
+│   │   │       ├── search/ 검색 (신규 추가)
+│   │   │       │    └─ useSearch.js  ← 검색 기능 (신규 추가)
+│   │   │       ├── sorted/ 정렬 (신규 추가)
+│   │   │       │    └─ useSortedDistance.js ← 거리순 정렬 전용 함수 (신규 추가)
+│   │   │       └── favorites/ 즐겨찾기 (신규 추가)
+│   │   │              ├─ FavoriteButton.vue   ← 북마크 버튼 컴포넌트 (신규 추가)
+│   │   │              └─ FavoriteScrollbar.vue   ← 북마크 스크롤바 전용 컴포넌트 (신규 추가)
+│   │   ├── useNaverMap.js               ← 네이버 지도 로직
+│   │   ├── useMapMarkers.js             ← 마커 관련 기능 
+│   │   ├── useClotheBin.js              ← 의류수거함 데이터 관리
+│   │   ├── useDetailPanel.js            ← 정보패널 상태 관리
+│   │   ├── useGeocoding.js            ← 지오코딩 관련 반응형 상태 관리 (신규 추가)
+│   │   └── useAuth.js  ← 인증 관련 Composition API (신규 추가)
+│   ├── utils/  유틸리티용
+│   │   ├ markerClustering.js   ← 마커 클러스터링을 정의
+│   │   ├ regionExtractor.js ← 지역 추출 및 그룹화 함수 (신규 추가)
+│   │   └ validationUtils.js ←  회원가입 (신규 추가)
+│   ├── assets/                        이미지, 폰트, 아이콘 등 정적 자원  정적 파일용
+│   └── styles/                         CSS/SCSS 스타일 파일들
+│	  │ ├─── sidebar/       ← 사이드바 세부사항 css
+│ 	  │ │        ├── clothing-bins.css ← 의류수거함 데이터 띄우는 창 디자인
+│ 	  │ │        └── scrollbar.css  ← 스크롤바 디자인
+│ 	  │ ├───  detailpanel/ ← 정보패널 세부사항 css (신규 추가)
+│ 	  │ │        ├── clothing-bin-image.css ← 정보패널 의류수거함 사진 css (신규 추가)
+│ 	  │ │        ├── clothing-bin-data.css ← 정보패널 의류수거함 데이터 글씨 css (신규 추가)
+│ 	  │ │        ├── distance-info.css ← 거리 정보 css (신규 추가)
+│ 	  │ │        ├── favorite-divider.css ← 즐겨찾기 버튼, 구분선 css (신규 추가) 
+│ 	  │ │        └── review-section.css ← 리뷰 css (신규추가)
+│ 	  │ ├─── favorites/ ← 즐겨찾기 css  (신규 추가)
+│ 	  │ │          ├── favorites-layout.css ← 전체 레이아웃 (신규 추가)
+│ 	  │ │          ├── favorites-header.css ← 헤더 스타일 (신규 추가)
+│ 	  │ │          ├── favorites-line.css ← 구분선 스타일 (신규 추가)
+│ 	  │ │          ├── favorites-clothing-item.css ← 의류수거함 아이템 전체 컨테이너 스타일 (신규 추가)
+│ 	  │ │          └── favorites-region-group.css ← 지역 그룹 전체 컨테이너 스타일 (신규 추가)
+│ 	  │ ├─── login/ ← 로그인 페이지 css (신규 추가)
+│ 	  │ │            ├── login-layout.css     ← 전체 레이아웃 + 로고  (신규 추가)
+│ 	  │ │            ├── login-inputs.css     ← 입력창 + 눈 아이콘  (신규 추가)
+│ 	  │ │            ├── login-button.css     ← 로그인 버튼 (신규 추가)
+│ 	  │ │            └── login-links.css      ← 하단 링크들 (신규 추가)
+│ 	  │ ├─── signup/ ← 회원가입 페이지 css (신규 추가)
+│ 	  │ │            ├── signup-layout.css     ← 전체 레이아웃 (신규 추가)
+│ 	  │ │            ├── signup-userid.css     ← 아이디 css (신규 추가)
+│ 	  │ │            ├── signup-password.css    ← 비밀번호 css (신규 추가)
+│ 	  │ │            ├── signup-password-confirm.css    ← 비밀번호 확인 css (신규 추가)
+│ 	  │ │            ├── signup-nickname.css ← 닉네임 css (신규추가)
+│ 	  │ │            ├── signup-email.css ← 이메일 css (신규추가)
+│ 	  │ │            ├── signup-agreebutton.css ← 약관동의 css (신규추가)
+│ 	  │ │            ├── signup-agreement-common.css ← 개별 약관, 필수 텍스트 css (신규추가)
+│ 	  │ │            ├── signup-terms-location.css ← 위치기반 서비스 css (신규추가)
+│ 	  │ │            ├── signup-terms-privacy.css ← 개인정보 약관 css (신규추가)
+│ 	  │ │            ├── signup-terms-age.css ← 만 14세 이상 약관 css (신규추가)
+│ 	  │ │            ├── signup-submit-button.css ← 가입버튼 css (신규추가)
+│ 	  │ ├─── findid/ ← 아이디 찾기 css (신규추가) 
+│ 	  │ │            ├── findid-layout.css     ← 전체 레이아웃 (신규 추가)
+│ 	  │ │            ├── findid-nickname.css     ← 닉네임 css (신규 추가)
+│ 	  │ │            ├── findid-email.css    ← 이메일 css (신규 추가)
+│ 	  │ │            ├── findid-button.css    ← 버튼 css (신규 추가)
+│ 	  │ │            ├── findid-input.css ← 입력창 css (신규추가)
+│ 	  │ ├─── findpassword/ ← 비밀번호 찾기 css (신규추가)
+│ 	  │ │            ├──  findpassword-layout.css     ← 전체 레이아웃 (신규 추가)
+│ 	  │ │            ├──  findpassword-userid.css     ← 아이디 css (신규 추가)
+│ 	  │ │            ├──  findpassword-email.css    ← 이메일 css (신규 추가)
+│ 	  │ │            ├──  findpassword-button.css    ← 버튼 css (신규 추가)
+│ 	  │ │            ├──  findpassword-input.css ← 입력창 css (신규추가)
+│ 	  │ ├─── findidnotfound/ ← 아이디 찾기 실패 css (신규추가)
+│ 	  │ │            ├── findidnotfound-layout.css  ← 전체 레이아웃 (신규 추가)
+│ 	  │ │            ├── findidnotfound-message.css ← 실패 메시지 (신규추가)
+│ 	  │ │            ├── findidnotfound-button.css  ← 로그인 돌아가기 버튼 (신규추가)
+│ 	  │ ├─── findpasswordnotfound/ ← 비밀번호 찾기 실패 css (신규추가)
+│ 	  │ │            ├── findpasswordnotfound-layout.css ← 전체 레이아웃 (신규 추가)
+│ 	  │ │            ├── findpasswordnotfound-message.css ← 실패 메시지 (신규추가)
+│ 	  │ │            ├── findpasswordnotfound-button.css ← 로그인 돌아가기 버튼 (신규추가)
+│ 	  │ ├─── findidsuccess/ ← 아이디 찾기 성공 css (신규추가) 
+│ 	  │ │            ├── findidsuccess-layout.css ← 전체 레이아웃 (신규 추가)
+│ 	  │ │            ├── findidsuccess-message.css ← 성공 메시지 (신규추가)
+│ 	  │ │            ├── findidsuccess-button.css ← 로그인 돌아가기 버튼 (신규추가)
+│ 	  │ ├─── resetpassword/ ← 비밀번호 재설정 css (신규추가)
+│ 	  │ │            ├── resetpassword-layout.css ← 전체 레이아웃 (신규추가)
+│ 	  │ │            ├── resetpassword-input-label.css ← 입력라벨 스타일 (신규추가)
+│ 	  │ │            ├── resetpassword-new-password.css ← 새 비밀번호 (신규추가)
+│ 	  │ │            ├── resetpassword-eye-icon.css ← 눈 아이콘 (신규추가)
+│ 	  │ │            ├── resetpassword-requirements.css ← 비밀번호 요구사항 컨테이너 (신규추가)
+│ 	  │ │            ├── resetpassword-confirm.css ← 비밀번호 확인 (신규추가)
+│ 	  │ │            ├── resetpassword-button.css ← 다음 버튼 (신규추가)
+│ 	  │ ├─── mypage/ ← 마이페이지 css  (신규추가)
+│ 	  │ │            ├── mypage-layout.css          ← 전체 레이아웃  (신규추가)
+│ 	  │ │            ├── mypage-profile-image.css   ← 위 사진 부분 (신규추가)
+│ 	  │ │            ├── mypage-scrollbar.css       ← 스크롤바 (신규추가)
+│ 	  │ │            ├── mypage-userid.css          ← 아이디 창 (신규추가)
+│ 	  │ │            ├── mypage-email.css           ← 이메일 창 (신규추가)
+│ 	  │ │            ├── mypage-nickname.css        ← 닉네임 창 (신규추가)
+│ 	  │ │            ├── mypage-password.css        ← 비밀번호 창  (신규추가)
+│ 	  │ │            ├── mypage-passwordcheck.css   ← 비밀번호 확인 창  (신규추가)
+│ 	  │ │            ├── mypage-member-section.css  ← 회원정보/회원정보 수정 섹션 (신규추가)
+│ 	  │ │            ├── mypage-storage-button.css  ← 변경된 정보 저장 버튼  (신규추가)
+│ 	  │ │            ├── mypage-logout-button.css  ← 로그아웃 버튼  (신규추가)
+│ 	  │ │            ├── mypage-delete-my-account-button.css ← 회원 탈퇴 버튼  (신규추가)
+│ 	  │ ├─── signuplocation/ ← 위치정보 서비스 이용약관 css  (신규추가)
+│ 	  │ │            ├── location-terms.css ← 위치정보 약관 스타일 (신규추가)
+│ 	  │ │            ├── location-service-consent.css ← 위치기반 서비스 동의서 스타일 (신규추가)
+│ 	  │ │            ├── location-dividers.css ← 구분선 스타일 (신규추가)
+│ 	  │ │            ├── location-confirm-button.css ← 확인 버튼 스타일 (신규추가)
+│ 	  │ │            ├── location-baselayout.css ← 기본 레이아웃 스타일 (신규추가)
+│ 	  │ ├─── signupprivacy/ ← 개인정보 수집 및 이용 동의서 css  (신규추가)
+│ 	  │ │            ├── privacy-layout.css ←  기본 레이아웃 (신규추가)
+│ 	  │ │            ├── privacy-content.css  ←  개인정보 내용 스타일 (신규추가)
+│ 	  │ │            ├── privacy-dividers.css  ←  구분선 스타일 (신규추가)
+│ 	  │ │            ├── privacy-confirm-button.css  ← 확인 버튼 스타일 (신규추가)
+│ 	  │ ├─── signupterms/ ← 회원가입 이용약관 동의 css  (신규추가)
+│ 	  │ │            ├── terms-layout.css  ←  기본 레이아웃 (신규추가)
+│ 	  │ │            ├── terms-content.css ←  약관 내용 스타일 (신규추가)
+│ 	  │ │            ├── terms-dividers.css ←  구분선 스타일 (신규추가)
+│ 	  │ │            ├── terms-confirm-button.css ← 동의 버튼 스타일 (신규추가)
+│       ├── global.css                   ← 전역 스타일 + CSS import 관리
+│       ├── components.css               ← 레이아웃, 지도 컴포넌트 스타일
+│       ├── navigation.css               ← 네비게이션 바 전용 스타일
+│       ├── sidebar.css                  ← 사이드바 전용 스타일 (통합버전)
+│       ├── post.css                      ← 작성된 나눔 글 컴포넌트
+│       ├── share.css                     ← 나눔페이지 컴포넌트
+│       └── shareWriting.css           ← 글쓰기 페이지 컴포넌트
+├── App.vue                              ← 메인 앱 컴포넌트
+└── .env                                 ← 네이버 지도 API 키  .env 파일 네이버지도 키 변수설정 VITE_NAVER_MAP_CLIENT_ID
+
+
